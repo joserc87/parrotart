@@ -28,7 +28,7 @@ letters = {'a': ['0110', '1001', '1001', '1111', '1001'],
            'x': ['1001', '1101', '0110', '1011', '1001'],
            'y': ['1001', '1001', '1110', '0010', '0100'],
            'z': ['1111', '0001', '0110', '1000', '1111'],
-           ' ': ['0000', '0000', '0000', '0000', '0000'],
+           ' ': ['00', '00', '00', '00', '00'],
            '?': ['1110', '0010', '0100', '0000', '0100'],
            }
 
@@ -46,7 +46,7 @@ def convert(text, foreground_emoji=':partyparrot:',
     print(base)
 
 
-if __name__ == '__main__':
+def main():
     if len(sys.argv) <= 1:
         print('''Missing text
 Usage:
@@ -60,3 +60,6 @@ Usage:
         if len(sys.argv) == 4:
             args['background_emoji'] = sys.argv[3]
         convert(text, **args)
+
+if __name__ == '__main__':
+    main()
