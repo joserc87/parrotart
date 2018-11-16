@@ -37,7 +37,7 @@ def convert(text, foreground_emoji=':partyparrot:',
             background_emoji=':invisibleparrot:'):
     sprites = [letters.get(c, '?') for c in text.lower()]
     rows = ['0'.join(x[i] for x in sprites) for i in range(5)]
-
+    rows = [r[:r.rfind('1') + 1] for r in rows]
     base = '\n'.join(rows)
 
     base = base.replace('0', background_emoji)
