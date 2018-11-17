@@ -1,6 +1,6 @@
 from logging import getLogger
 
-from flask import Blueprint
+from flask import Blueprint, jsonify, request
 
 slack = Blueprint('slack', __name__)
 logger = getLogger('slack')
@@ -18,4 +18,6 @@ def emojify_test():
 
 @slack.route('/emojify', methods=['POST'])
 def emojify():
-    pass
+    text = request.form['text']
+    payload = {'text': 'Echo:' + text}
+    return jsonify(payload)
