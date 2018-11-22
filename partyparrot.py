@@ -43,7 +43,7 @@ def convert(text, foreground_emoji=':partyparrot:',
     base = base.replace('0', background_emoji)
     base = base.replace('1', foreground_emoji)
 
-    print(base)
+    return base
 
 
 def main():
@@ -59,7 +59,7 @@ Usage:
             args['foreground_emoji'] = sys.argv[2]
         if len(sys.argv) == 4:
             args['background_emoji'] = sys.argv[3]
-        convert(text, **args)
+        print(convert(text, **args))
 
 if __name__ == '__main__':
     main()
