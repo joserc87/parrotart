@@ -1,8 +1,10 @@
-from logging import getLogger
+from logging import getLogger, FileHandler, DEBUG
 
 from flask import Blueprint, Flask
 
 logger = getLogger('app')
+file_handler = FileHandler('app.log')
+file_handler.setLevel(DEBUG)
 
 HOST='127.0.0.1'
 PORT='5000'
