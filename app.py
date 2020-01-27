@@ -6,9 +6,10 @@ logger = getLogger('app')
 file_handler = FileHandler('app.log')
 file_handler.setLevel(DEBUG)
 
-HOST='127.0.0.1'
+#HOST='127.0.0.1'
+HOST='0.0.0.0'
 PORT='5000'
-DEBUG=False
+DEBUG=True
 
 def create_app(config_filename):
     app = Flask(__name__)

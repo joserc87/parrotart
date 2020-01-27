@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  slackbot:
+    image: repo.treescale.com/joserc87/parrotart_slackbot
+    build: ./
+    command: gunicorn app:app --bind 0.0.0.0:5000
+    volumes:
+      - ./:/app
+    ports:
+      - 5000:5000
+    env_file:
+      - ./.env.dev
