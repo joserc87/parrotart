@@ -14,6 +14,7 @@ jobs:
     - stage: "Build Docker Image"
       name: "Build Docker Image"
       script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -t parrotart .
         - docker images
         - docker tag parrotart repo.treescale.com/joserc87/parrotart:latest
