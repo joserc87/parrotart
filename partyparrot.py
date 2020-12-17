@@ -60,7 +60,7 @@ def convert_char_to_alphabet(char):
     char = char.lower()
 
     if char == ' ':
-        return ' '
+        return '   '
 
     if not valid_alphabet_char(char):
         char = '?'
