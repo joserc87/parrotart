@@ -1,0 +1,21 @@
+language: python
+
+services:
+  - docker
+
+python:
+  - "3.8"
+jobs:
+  include:
+    - stage: "Tests"
+      name: "Unit Tests"
+      install: pip install -r requirements-dev.txt
+      script: pytest
+    - stage: "Build Docker Image"
+      name: "Build Docker Image"
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login repo.treescale.com -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -t parrotart .
+        - docker images
+        - docker tag parrotart repo.treescale.com/joserc87/parrotart:latest
+        - docker push repo.treescale.com/joserc87/parrotart:latest
