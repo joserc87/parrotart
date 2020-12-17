@@ -4,6 +4,7 @@ from partyparrot import convert_with_alphabet_emojis
 def test_convert_char_to_alphabet():
     assert convert_with_alphabet_emojis("") == ""
     assert convert_with_alphabet_emojis(" ") == "   "
+    assert convert_with_alphabet_emojis("\n") == "\n"
     assert (
         convert_with_alphabet_emojis(" one two")
         == "   :alphabet-white-o::alphabet-white-n::alphabet-white-e:   "

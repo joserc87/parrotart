@@ -61,6 +61,8 @@ def convert_char_to_alphabet(char):
 
     if char == ' ':
         return '   '
+    elif char == '\n':
+        return '\n'
 
     if not valid_alphabet_char(char):
         char = '?'
