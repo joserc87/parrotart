@@ -2,7 +2,7 @@ from logging import getLogger, FileHandler, DEBUG, Formatter
 
 from flask import Blueprint, jsonify, request
 
-from partyparrot import convert
+from partyparrot import convert, convert_with_alphabet_emojis
 from ..utils import parse_emojify_args
 
 slack = Blueprint('slack', __name__)
@@ -35,8 +35,17 @@ def emojify():
     logger.debug(f'user {user_name} emojified {text}')
     args = parse_emojify_args(text)
     message = args[0]
-    fg = args[1] if len(args) > 1 else DEFAULT_FG_EMOJI
-    bg = args[2] if len(args) > 2 else DEFAULT_BG_EMOJI
-    text = convert(message, fg, bg)
-    payload = {'text': text}
+    text = convert_message(message, args[1:])
+    payload = {"text": text}
     return jsonify(payload)
+
+
+def convert_message(message, emojis):
+    # Without arguments, just use the alphabet emojis
+    if len(emojis) == 0:
+        text = convert_with_alphabet_emojis(message)
+    else:
+        fg = emojis[1] if len(emojis) > 1 else DEFAULT_FG_EMOJI
+        bg = emojis[2] if len(emojis) > 2 else DEFAULT_BG_EMOJI
+        text = convert(message, fg, bg)
+    return text

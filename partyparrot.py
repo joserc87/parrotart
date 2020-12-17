@@ -46,6 +46,32 @@ def convert(text, foreground_emoji=':partyparrot:',
     return base
 
 
+special_alphabet_char = {
+    '?': 'question',
+    '!': 'exclamation',
+}
+
+
+def valid_alphabet_char(char):
+    i = ord(char)
+    return char in special_alphabet_char or i >= ord('a') and i <= ord('z')
+
+def convert_char_to_alphabet(char):
+    char = char.lower()
+
+    if char == ' ':
+        return ' '
+
+    if not valid_alphabet_char(char):
+        char = '?'
+    char = special_alphabet_char.get(char, char)
+    return f':alphabet-white-{char}:'
+
+
+def convert_with_alphabet_emojis(text):
+    return ''.join(convert_char_to_alphabet(c) for c in text)
+
+
 def main():
     if len(sys.argv) <= 1:
         print('''Missing text
