@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   slackbot:
-    image: repo.treescale.com/joserc87/parrotart_slackbot
+    image: repo.treescale.com/joserc87/parrotart
     command: gunicorn app:app --bind 0.0.0.0:5000
     ports:
       - 5000:5000
