@@ -46,7 +46,7 @@ def convert_message(message, emojis):
     if len(emojis) == 0:
         text = convert_with_alphabet_emojis(message)
     else:
-        fg = emojis[1] if len(emojis) > 1 else DEFAULT_FG_EMOJI
-        bg = emojis[2] if len(emojis) > 2 else DEFAULT_BG_EMOJI
+        fg = emojis[1] if len(emojis) >= 1 else DEFAULT_FG_EMOJI
+        bg = emojis[2] if len(emojis) >= 2 else DEFAULT_BG_EMOJI
         text = convert(message, fg, bg)
     return text
