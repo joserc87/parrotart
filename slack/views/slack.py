@@ -34,7 +34,7 @@ def emojify():
     text = request.form["text"]
     user_name = request.form["user_name"]
     logger.debug(f"user {user_name} emojified {text}")
-    payload = do_emojify(text)
+    payload = {"text": do_emojify(text)}
     return jsonify(payload)
 
 
