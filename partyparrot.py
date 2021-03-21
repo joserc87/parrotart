@@ -33,9 +33,13 @@ letters = {'a': ['0110', '1001', '1001', '1111', '1001'],
            }
 
 
+def get_letter(letter):
+    return letters[letter] if letter in letters else letters['?']
+
+
 def convert(text, foreground_emoji=':partyparrot:',
             background_emoji=':invisibleparrot:'):
-    sprites = [letters.get(c, '?') for c in text.lower()]
+    sprites = [get_letter(c) for c in text.lower()]
     rows = ['0'.join(x[i] for x in sprites) for i in range(5)]
     rows = [r[:r.rfind('1') + 1] for r in rows]
     base = '\n'.join(rows)

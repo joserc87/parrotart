@@ -34,11 +34,14 @@ def emojify():
     text = request.form["text"]
     user_name = request.form["user_name"]
     logger.debug(f"user {user_name} emojified {text}")
+    payload = do_emojify(text)
+    return jsonify(payload)
+
+
+def do_emojify(text):
     args = parse_emojify_args(text)
     message = args[0]
-    text = convert_message(message, args[1:])
-    payload = {"text": text}
-    return jsonify(payload)
+    return convert_message(message, args[1:])
 
 
 def convert_message(message, emojis):
@@ -46,7 +49,7 @@ def convert_message(message, emojis):
     if len(emojis) == 0:
         text = convert_with_alphabet_emojis(message)
     else:
-        fg = emojis[1] if len(emojis) >= 1 else DEFAULT_FG_EMOJI
-        bg = emojis[2] if len(emojis) >= 2 else DEFAULT_BG_EMOJI
+        fg = emojis[0] if len(emojis) >= 1 else DEFAULT_FG_EMOJI
+        bg = emojis[1] if len(emojis) >= 2 else DEFAULT_BG_EMOJI
         text = convert(message, fg, bg)
     return text
